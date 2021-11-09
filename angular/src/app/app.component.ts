@@ -26,7 +26,7 @@ export class AppComponent {
   options: Object = {
     mathTypeParameters: {
       serviceProviderProperties: {
-        URI: 'localhost:8000/integration',
+        URI: 'http://localhost:8000/integration',
         server: 'php',
       },
     },
