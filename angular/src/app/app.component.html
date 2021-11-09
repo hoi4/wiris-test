@@ -1,0 +1,10 @@
+<h1>Wiris Test</h1>
+
+<button (click)="destroy()">Destroy Froala Editor</button>
+
+<div
+  id="editor"
+  [froalaEditor]="options"
+  (froalaInit)="manualFroalaInitialize($event)"
+  [(froalaModel)]="content"
+></div>
