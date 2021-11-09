@@ -16,7 +16,7 @@ I am then using Docker Desktop to start the image on port 8000.
 
 When I use `wiriseditorsavemode = base64` the `test.php` page shows correctly, but I see this error message in the console:
 
-> Failed to load resource: the server responded with a status of 404 (Not Found)
+> Failed to load resource: the server responded with a status of 404 (Not Found) (WIRISplugins.js)
 
 When I use `wiriseditorsavemode = image` (remember to rebuild the docker image), the `test.php` page shows "OK" for all status values, but I don't see the actual images and the console shows multiple errors:
 
@@ -32,6 +32,11 @@ When I use `wiriseditorsavemode = image` (remember to rebuild the docker image),
 - run `npm i`
 - run `ng serve`
 
-For me this also currently fails with the following error:
+~~For me this also currently fails with the following error:~~
 
-> zone-evergreen.js:2892 POST http://localhost:4200/localhost:8000/integration/configurationjs.php 404 (Not Found)
+> ~~zone-evergreen.js:2892 POST http://localhost:4200/localhost:8000/integration/configurationjs.php 404 (Not Found)~~
+
+I was able to fix this issue by using `http://localhost` instead of just `localhost` in the `URI` configuration (see commit)
+
+Now the only error I see is that `tech.txt` cannot be fetched due to a CORS issue.
+When using `base64` saveMode, it seems to work fine nonetheless, but when using `image` the request is done against e.g. `http://integration/showimage.php?formula=c5ca3f1e4b7337bcfec8cecf4be47726` (the `localhost` part is somehow missing just like on the `test.php` page reported above)
