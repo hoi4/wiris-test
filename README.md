@@ -7,18 +7,39 @@ Angular Frontend Wiris Test
 I am using docker to start up the server. To build the docker image, navigate to the `php` folder and run
 
 ```
-docker build -t some-name -f froala-wiris.docker .
+docker build -t base64 -f froala-wiris.docker .
 ```
 
-(note the dot at the end)
+I then change the configuration.ini file to use `wiriseditorsavemode = image` and build another docker image.
 
-I am then using Docker Desktop to start the image on port 8000.
+```
+docker build -t image -f froala-wiris.docker .
+```
+
+To start docker containers for these images I use:
+
+```
+docker run --name WirisBase64 --publish 127.0.0.1:8000:80 base64
+```
+
+and
+
+```
+docker run --name WirisImage --publish 127.0.0.1:8001:80 image
+```
+
+This can of course also be done using Docker Desktop which might be easier.
+
+| saveMode | running on port | test page                           |
+| -------- | --------------- | ----------------------------------- |
+| base64   | 8000            | localhost:8000/integration/test.php |
+| image    | 8001            | localhost:8001/integration/test.php |
 
 When I use `wiriseditorsavemode = base64` the `test.php` page shows correctly, but I see this error message in the console:
 
 > Failed to load resource: the server responded with a status of 404 (Not Found) (WIRISplugins.js)
 
-When I use `wiriseditorsavemode = image` (remember to rebuild the docker image), the `test.php` page shows "OK" for all status values, but I don't see the actual images and the console shows multiple errors:
+When I use `wiriseditorsavemode = image`, the `test.php` page shows "OK" for all status values, but I don't see the actual images and the console shows multiple errors:
 
 > GET http://localhost:8000/core/WIRISplugins.js?viewer=image net::ERR_ABORTED 404 (Not Found)
 
