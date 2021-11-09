@@ -79,9 +79,9 @@ export class AppComponent {
     this._initControls = initControls;
     initControls.initialize();
 
-    // setTimeout(() => {
-    //   const saveMode = WirisPlugin.Configuration.get('saveMode');
-    //   console.log('saveMode', saveMode);
-    // }, 1000);
+    setTimeout(() => {
+      const saveMode = WirisPlugin.Configuration.get('saveMode');
+      console.log('saveMode', saveMode);
+    }, 1000);
   }
 }
