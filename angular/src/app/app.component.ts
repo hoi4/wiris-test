@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 // Load WIRISplugins.js dynamically
-const jsDemoImagesTransform = document.createElement('script');
-jsDemoImagesTransform.type = 'text/javascript';
-jsDemoImagesTransform.src =
-  'http://localhost:8000/integration/WIRISplugins.js?viewer=image';
-// Load generated scripts.
-document.head.appendChild(jsDemoImagesTransform);
+// const jsDemoImagesTransform = document.createElement('script');
+// jsDemoImagesTransform.type = 'text/javascript';
+// jsDemoImagesTransform.src =
+//   'http://localhost:8000/integration/WIRISplugins.js?viewer=image';
+// // Load generated scripts.
+// document.head.appendChild(jsDemoImagesTransform);
 
 declare const WirisPlugin: any;
 
