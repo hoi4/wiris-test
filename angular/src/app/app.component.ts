@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BROKEN_IMAGE_CAPTION_CONTENT } from './content';
 
 // Load WIRISplugins.js dynamically
 // const jsDemoImagesTransform = document.createElement('script');
@@ -20,13 +21,13 @@ export class AppComponent {
   title = 'Angular froala demo';
 
   // Initialize the editor content.
-  content: string = '';
+  content: string = BROKEN_IMAGE_CAPTION_CONTENT;
 
   // Set options for the editor.
   options: Object = {
     mathTypeParameters: {
       serviceProviderProperties: {
-        URI: 'http://localhost:8000/integration',
+        URI: 'https://froala-wiris.dev.studysmarter-test.de/integration',
         server: 'php',
       },
     },
@@ -49,6 +50,7 @@ export class AppComponent {
       'imageAlign',
       'imageInfo',
       'imageRemove',
+      'imageCaption',
     ],
     // Allow all the tags to understand the mathml
     htmlAllowedTags: ['.*'],
@@ -73,6 +75,10 @@ export class AppComponent {
   destroy() {
     console.log('destroy froala editor');
     this._initControls.destroy();
+  }
+
+  getHtml() {
+    console.log(this._initControls.getEditor().html.get());
   }
 
   manualFroalaInitialize(initControls: any) {
