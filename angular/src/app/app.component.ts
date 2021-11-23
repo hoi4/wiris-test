@@ -68,6 +68,11 @@ export class AppComponent {
     initialized: () => {
       console.log('froala initialized');
     },
+    contentChanged: function () {
+      // Do something here.
+      // this is the editor instance.
+      console.log('Content changed', this.html.get());
+    },
   };
 
   private _initControls: any;
