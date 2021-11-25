@@ -65,13 +65,18 @@ export class AppComponent {
     // mathTypeParameters: {
     //   editorParameters: { language: 'es' },
     // },
-    initialized: () => {
-      console.log('froala initialized');
-    },
-    contentChanged: function () {
-      // Do something here.
-      // this is the editor instance.
-      console.log('Content changed', this.html.get());
+    events: {
+      focus: () => {
+        console.log('focus');
+      },
+      initialized() {
+        console.log('froala initialized');
+      },
+      contentChanged: function () {
+        // Do something here.
+        // this is the editor instance.
+        console.log('Content changed', this.html.get());
+      },
     },
   };
 
